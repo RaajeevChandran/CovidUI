@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:charts_flutter/flutter.dart' as charts;
 
+import 'models/models.dart';
+
 class Stats extends StatefulWidget {
   @override
   _StatsState createState() => _StatsState();
@@ -218,9 +220,4 @@ class _StatsState extends State<Stats> {
   }
 }
 
-class DailyCases {
-  int date;
-  int val;
 
-  DailyCases({this.date, this.val});
-}

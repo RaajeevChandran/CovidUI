@@ -39,34 +39,8 @@ class _LandingPageState extends State<LandingPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: <Widget>[
-                          Padding(
-                            padding: const EdgeInsets.only(left: 30.0),
-                            child: Text('Get Started',
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: "Montserrat",
-                                    fontSize: 18)),
-                          ),
-                          Container(
-                              decoration: BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(5.0)),
-                                  color: Color(0xFF3A48ED)),
-                              height: 45,
-                              width: 45,
-                              child: GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                BottomNavigation()));
-                                  },
-                                  child: Icon(
-                                    Icons.arrow_forward,
-                                    size: 30,
-                                    color: Colors.white,
-                                  )))
+                          buildBottomCardText(),
+                          buildBottomCardIcon(context)
                         ],
                       )),
                 ))
@@ -98,5 +72,33 @@ class _LandingPageState extends State<LandingPage> {
         ),
       ]),
     );
+  }
+
+  Padding buildBottomCardText() {
+    return Padding(
+      padding: const EdgeInsets.only(left: 30.0),
+      child: Text('Get Started',
+          style: TextStyle(
+              color: Colors.black, fontFamily: "Montserrat", fontSize: 18)),
+    );
+  }
+
+  Container buildBottomCardIcon(BuildContext context) {
+    return Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.all(Radius.circular(5.0)),
+            color: Color(0xFF3A48ED)),
+        height: 45,
+        width: 45,
+        child: GestureDetector(
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => BottomNavigation()));
+            },
+            child: Icon(
+              Icons.arrow_forward,
+              size: 30,
+              color: Colors.white,
+            )));
   }
 }

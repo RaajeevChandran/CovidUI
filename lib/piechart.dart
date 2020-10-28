@@ -3,15 +3,8 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-
-import 'helpers/widgets.dart';
-
-class Task {
-  String task;
-  int taskvalue;
-  Color colors;
-  Task({this.task, this.taskvalue, this.colors});
-}
+import 'models/models.dart';
+import 'widgets/widgets.dart';
 
 class Res extends StatefulWidget {
   @override
@@ -54,13 +47,13 @@ class _ResState extends State<Res> {
     b = statsIndia["recovered"];
     c = statsIndia["deaths"];
     print(a);
-    get();
+    buildChart();
     print(statsIndia);
     setState(() {});
     return "Sucesss!";
   }
 
-  void get() {
+  void buildChart() {
     print("a is $a , b is $b, c is $c");
     var piedata = [
       new Task(task: "Confirmed", taskvalue: a, colors: Color(0xFF003cbf)),
@@ -78,8 +71,6 @@ class _ResState extends State<Res> {
     print("Length is ${_seriesPieData.length}");
   }
 
-
-
   @override
   void initState() {
     super.initState();
@@ -93,6 +84,7 @@ class _ResState extends State<Res> {
         child: Scaffold(
             backgroundColor: Color(0xFF3a48ed),
             body: SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
               child: Column(
                 children: <Widget>[
                   firstcontainer(),
@@ -178,10 +170,6 @@ class _ResState extends State<Res> {
             )));
   }
 
-  
-
-  
-
   Container firstcontainer() {
     return Container(
         height: 870,
@@ -193,7 +181,6 @@ class _ResState extends State<Res> {
         ),
         child: Column(
           children: <Widget>[
-            
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
@@ -227,7 +214,7 @@ class _ResState extends State<Res> {
                 SizedBox(
                   height: 10,
                 ),
-                chart(),
+                chart(_seriesPieData),
                 SizedBox(height: 15),
                 _seriesPieData.length > 0
                     ? SafeArea(
@@ -238,22 +225,21 @@ class _ResState extends State<Res> {
                             child: Column(
                               children: <Widget>[
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    piecard(
-                                      Color(0xFF003cbf),
-                                      "Confirmed",
-                                      "totalCases",
-                                    ),
+                                    piecard(Color(0xFF003cbf), "Confirmed",
+                                        "totalCases", data),
                                     piecard(Color(0xFF06cafd), "Recovered",
-                                        "recovered"),
+                                        "recovered", data),
                                   ],
                                 ),
                                 Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children: <Widget>[
-                                    piecard(
-                                        Color(0xFFff5c4d), "Deaths", "deaths"),
-                                    piecard(
-                                        Colors.amber, "Active", "activeCases")
+                                    piecard(Color(0xFFff5c4d), "Deaths",
+                                        "deaths", data),
+                                    piecard(Colors.amber, "Active",
+                                        "activeCases", data)
                                   ],
                                 ),
                                 Text(
@@ -271,91 +257,5 @@ class _ResState extends State<Res> {
             )
           ],
         ));
-  }
-
-  Widget piecard(Color colors, String title, String total) {
-    return SafeArea(
-      child: Container(
-          width: 160,
-          margin: EdgeInsets.all(15),
-          height: 110,
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.all(Radius.circular(10.0)),
-            color: Colors.amber,
-          ),
-          child: Column(
-            children: <Widget>[
-              Row(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.all(15),
-                    width: 18,
-                    height: 18,
-                    color: colors,
-                  ),
-                  Text(title,
-                      style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                          fontFamily: "Jost"))
-                ],
-              ),
-              Text('${data[total].toString()} ',
-                  style: TextStyle(
-                      fontSize: 30, color: Colors.white, fontFamily: "Cookie"))
-            ],
-          )),
-    );
-  }
-
-  Widget chart() {
-    return Container(
-        padding: EdgeInsets.all(5.0),
-        width: 400,
-        height: 350,
-        child: Padding(
-            padding: EdgeInsets.all(1.0),
-            child: Container(
-                child: Center(
-                    child: Column(
-              children: <Widget>[
-                _seriesPieData.length > 0
-                    ? Expanded(
-                        child: charts.PieChart(
-                          _seriesPieData,
-                          animate: true,
-                          animationDuration: Duration(milliseconds: 1500),
-                          behaviors: [
-                            new charts.DatumLegend(
-                              outsideJustification:
-                                  charts.OutsideJustification.endDrawArea,
-                              horizontalFirst: false,
-                              desiredMaxRows: 3,
-                              cellPadding:
-                                  new EdgeInsets.only(left: 15.0, bottom: 4.0),
-                              entryTextStyle: charts.TextStyleSpec(
-                                  color: charts.MaterialPalette.black,
-                                  fontFamily: "Jost",
-                                  fontSize: 13),
-                            ),
-                          ],
-                          defaultRenderer: new charts.ArcRendererConfig(
-                              arcWidth: 50,
-                              arcRendererDecorators: [
-                                new charts.ArcLabelDecorator(
-                                  labelPosition:
-                                      charts.ArcLabelPosition.outside,
-                                )
-                              ]),
-                        ),
-                      )
-                    : Container(
-                        width: 250,
-                        height: 250,
-                        child: Center(
-                            child: Image.asset("assets/images/load.gif",
-                                fit: BoxFit.cover))),
-              ],
-            )))));
   }
 }
