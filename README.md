@@ -1,4 +1,4 @@
-# flutter_onboard_ui
+# COVID UI
 
 A new Flutter project.
 
