@@ -10,7 +10,7 @@ class BottomNavigation extends StatefulWidget {
 
 class _BottomNavigationState extends State<BottomNavigation> {
   int _currentIndex=1;
-  List<Widget> _children=[Stats(),Res(),News()];
+  List<Widget> _children=[Stats(),HomePage(),News()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

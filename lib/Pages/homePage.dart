@@ -6,12 +6,12 @@ import 'package:http/http.dart' as http;
 import '../models/models.dart';
 import '../widgets/widgets.dart';
 
-class Res extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _ResState createState() => _ResState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _ResState extends State<Res> {
+class _HomePageState extends State<HomePage> {
   Map data = {};
   Map<String, dynamic> statsIndia;
   List<charts.Series<Task, String>> _seriesPieData =
