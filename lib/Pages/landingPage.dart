@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'bottomNavigationBar.dart';
+import '../bottomNavigationBar.dart';
 
 class LandingPage extends StatefulWidget {
   @override

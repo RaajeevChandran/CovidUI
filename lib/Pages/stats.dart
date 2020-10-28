@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:charts_flutter/flutter.dart' as charts;
 
-import 'models/models.dart';
+import '../models/models.dart';
 
 class Stats extends StatefulWidget {
   @override

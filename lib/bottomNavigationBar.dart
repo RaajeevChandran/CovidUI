@@ -1,7 +1,7 @@
-import 'package:COVID/stats.dart';
+import 'package:COVID/Pages/stats.dart';
 import 'package:flutter/material.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-import 'piechart.dart';
+import 'Pages/homePage.dart';
 
 class BottomNavigation extends StatefulWidget {
   @override

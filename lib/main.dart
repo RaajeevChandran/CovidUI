@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'dart:async';
 
-import 'landingpage.dart';
+import 'Pages/landingPage.dart';
 
 void main() => runApp(MaterialApp(home: MyApp()));
 
