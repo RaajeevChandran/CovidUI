@@ -177,7 +177,6 @@ class _StatsState extends State<Stats> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     get();
   }

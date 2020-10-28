@@ -66,7 +66,6 @@ class _ResState extends State<Res> {
       id: "India",
       labelAccessorFn: (Task row, _) => '${row.taskvalue}',
     ));
-    print("Length is ${_seriesPieData.length}");
   }
 
   @override
