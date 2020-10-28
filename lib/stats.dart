@@ -36,6 +36,7 @@ class _StatsState extends State<Stats> {
   }
 
   void get() {
+    //Not random values, real statistic data scraped using Python. :)
     List<int> marchconfirmeddata = [
       1111,
       3,

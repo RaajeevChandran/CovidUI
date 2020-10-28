@@ -16,7 +16,7 @@ class _ResState extends State<Res> {
   Map<String, dynamic> statsIndia;
   List<charts.Series<Task, String>> _seriesPieData =
       List<charts.Series<Task, String>>();
-  int a, b, c;
+  int totalCases,recovered,deaths;
   var days = DateTime.now().day;
   var month = DateTime.now().month;
   List months = [
@@ -43,10 +43,9 @@ class _ResState extends State<Res> {
 
     data = json.decode(response.body);
     statsIndia = data;
-    a = statsIndia["totalCases"];
-    b = statsIndia["recovered"];
-    c = statsIndia["deaths"];
-    print(a);
+    totalCases = statsIndia["totalCases"];
+    recovered = statsIndia["recovered"];
+   deaths = statsIndia["deaths"];
     buildChart();
     print(statsIndia);
     setState(() {});
@@ -54,11 +53,10 @@ class _ResState extends State<Res> {
   }
 
   void buildChart() {
-    print("a is $a , b is $b, c is $c");
     var piedata = [
-      new Task(task: "Confirmed", taskvalue: a, colors: Color(0xFF003cbf)),
-      new Task(task: "Recovered", taskvalue: b, colors: Color(0xFF06cafd)),
-      new Task(task: "Deaths", taskvalue: c, colors: Color(0xFFff5c4d))
+      new Task(task: "Confirmed", taskvalue: totalCases, colors: Color(0xFF003cbf)),
+      new Task(task: "Recovered", taskvalue: recovered, colors: Color(0xFF06cafd)),
+      new Task(task: "Deaths", taskvalue: deaths, colors: Color(0xFFff5c4d))
     ];
     _seriesPieData.add(charts.Series(
       data: piedata,
@@ -149,8 +147,6 @@ class _ResState extends State<Res> {
             )));
   }
 
-  
-
   Container statsContainer() {
     return Container(
         height: 870,
@@ -186,8 +182,6 @@ class _ResState extends State<Res> {
                     Container(
                         height: 40,
                         width: 40,
-
-                        //  color:Colors.black,
                         child: Image.network(
                             "https://upload.wikimedia.org/wikipedia/en/thumb/4/41/Flag_of_India.svg/1200px-Flag_of_India.svg.png"))
                   ],
@@ -198,45 +192,13 @@ class _ResState extends State<Res> {
                 chart(_seriesPieData),
                 SizedBox(height: 15),
                 _seriesPieData.length > 0
-                    ? SafeArea(
-                        child: Center(
-                          child: Container(
-                            width: 380,
-                            height: 320,
-                            child: Column(
-                              children: <Widget>[
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    piecard(Color(0xFF003cbf), "Confirmed",
-                                        "totalCases", data),
-                                    piecard(Color(0xFF06cafd), "Recovered",
-                                        "recovered", data),
-                                  ],
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: <Widget>[
-                                    piecard(Color(0xFFff5c4d), "Deaths",
-                                        "deaths", data),
-                                    piecard(Colors.amber, "Active",
-                                        "activeCases", data)
-                                  ],
-                                ),
-                                Text(
-                                  "* Data from lead sources",
-                                  style: TextStyle(
-                                      fontFamily: "Jost", fontSize: 15),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      )
+                    ? buildPieCardsGrid(data)
                     : Container()
               ],
             )
           ],
         ));
   }
+
+  
 }
