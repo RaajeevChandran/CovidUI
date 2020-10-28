@@ -139,5 +139,30 @@ Widget piecard(Color colors, String title, String total,Map<dynamic,dynamic> dat
     );
   }
 
+ListView buildSyptomsCardListView() {
+    return ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: <Widget>[
+                        symptomcard(Color(0xFF3490DC),
+                            "assets/images/lung.gif", "Breathing"),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                        ),
+                        symptomcard(Color(0xFFFFCDD2),
+                            "assets/images/therm.gif", "Fever"),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                        ),
+                        symptomcard(Color(0xFF336BEB),
+                            "assets/images/cough.gif", "Cough"),
+                        Padding(
+                          padding: EdgeInsets.all(5.0),
+                        ),
+                        symptomcard(Color(0xFFDA5571),
+                            "assets/images/sorethroat.gif", "Sore Throat")
+                      ],
+                    );
+  }
+
 
 

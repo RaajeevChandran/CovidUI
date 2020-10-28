@@ -87,7 +87,7 @@ class _ResState extends State<Res> {
               physics: BouncingScrollPhysics(),
               child: Column(
                 children: <Widget>[
-                  firstcontainer(),
+                  statsContainer(),
                   SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.only(right: 210.0),
@@ -105,28 +105,7 @@ class _ResState extends State<Res> {
                               topRight: Radius.circular(20.0))),
                       height: 180,
                       width: MediaQuery.of(context).size.width,
-                      child: ListView(
-                        scrollDirection: Axis.horizontal,
-                        children: <Widget>[
-                          symptomcard(Color(0xFF3490DC),
-                              "assets/images/lung.gif", "Breathing"),
-                          Padding(
-                            padding: EdgeInsets.all(5.0),
-                          ),
-                          symptomcard(Color(0xFFFFCDD2),
-                              "assets/images/therm.gif", "Fever"),
-                          Padding(
-                            padding: EdgeInsets.all(5.0),
-                          ),
-                          symptomcard(Color(0xFF336BEB),
-                              "assets/images/cough.gif", "Cough"),
-                          Padding(
-                            padding: EdgeInsets.all(5.0),
-                          ),
-                          symptomcard(Color(0xFFDA5571),
-                              "assets/images/sorethroat.gif", "Sore Throat")
-                        ],
-                      ),
+                      child: buildSyptomsCardListView(),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -170,7 +149,9 @@ class _ResState extends State<Res> {
             )));
   }
 
-  Container firstcontainer() {
+  
+
+  Container statsContainer() {
     return Container(
         height: 870,
         decoration: BoxDecoration(
