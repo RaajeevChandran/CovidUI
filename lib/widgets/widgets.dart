@@ -2,6 +2,13 @@ import 'package:COVID/models/models.dart';
 import "package:flutter/material.dart";
 import 'package:charts_flutter/flutter.dart' as charts;
 
+Text text(String label,{double fontSize=25,Color color=Colors.black}) {
+  return Text(
+    label,
+    style: TextStyle(fontFamily: "Montserrat",fontSize: fontSize,color:color),
+  );
+}
+
 Widget preventionscard(Color colors, String path, String msg) {
   return Container(
       width: 350,
@@ -190,32 +197,23 @@ SafeArea buildPieCardsGrid(Map<dynamic, dynamic> data) {
   );
 }
 
-
 SafeArea buildPreventionsCardListView() {
-    return SafeArea(
-                  child: Column(
-                    children: <Widget>[
-                      preventionscard(
-                          Color(0xFFd4ffea),
-                          "assets/images/masks.gif",
-                          "Wear a mask always to prevent the risks of being infected."),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      preventionscard(
-                          Color(0xFFc6f9fd),
-                          "assets/images/sanitise.gif",
-                          "Wash your hands with alcohol-based hand sanitizer to demolish those serial killers off of your hands."),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      preventionscard(
-                          Color(0xFFfbd5d3),
-                          "assets/images/socialdistancing.gif",
-                          "Practice Social Distancing and stay atleast 2 metres apart from people."),
-                      Padding(padding: EdgeInsets.all(5.0)),
-                      preventionscard(
-                          Color(0xFFf4c540),
-                          "assets/images/quarantine.gif",
-                          "Sit back on your couch and Chill. #StayHome&StaySafe"),
-                      Padding(padding: EdgeInsets.all(5.0))
-                    ],
-                  ),
-                );
-  }
+  return SafeArea(
+    child: Column(
+      children: <Widget>[
+        preventionscard(Color(0xFFd4ffea), "assets/images/masks.gif",
+            "Wear a mask always to prevent the risks of being infected."),
+        Padding(padding: EdgeInsets.all(5.0)),
+        preventionscard(Color(0xFFc6f9fd), "assets/images/sanitise.gif",
+            "Wash your hands with alcohol-based hand sanitizer to demolish those serial killers off of your hands."),
+        Padding(padding: EdgeInsets.all(5.0)),
+        preventionscard(Color(0xFFfbd5d3), "assets/images/socialdistancing.gif",
+            "Practice Social Distancing and stay atleast 2 metres apart from people."),
+        Padding(padding: EdgeInsets.all(5.0)),
+        preventionscard(Color(0xFFf4c540), "assets/images/quarantine.gif",
+            "Sit back on your couch and Chill. #StayHome&StaySafe"),
+        Padding(padding: EdgeInsets.all(5.0))
+      ],
+    ),
+  );
+}

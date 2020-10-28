@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:COVID/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'dart:async';
@@ -31,11 +34,7 @@ class _MyAppState extends State<MyApp> {
             children: <Widget>[
               Padding(
                 padding: const EdgeInsets.only(top: 100.0),
-                child: Text('Covid-19',
-                    style: TextStyle(
-                        fontFamily: "Montserrat",
-                        fontSize: 30,
-                        color: Colors.white)),
+                child: text('Covid-19',color: Colors.white,fontSize: 30),
               ),
               Center(
                 child: Image.asset('assets/images/startloading.gif',

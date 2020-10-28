@@ -1,3 +1,4 @@
+import 'package:COVID/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import '../bottomNavigationBar.dart';
 
@@ -77,10 +78,8 @@ class _LandingPageState extends State<LandingPage> {
   Padding buildBottomCardText() {
     return Padding(
       padding: const EdgeInsets.only(left: 30.0),
-      child: Text('Get Started',
-          style: TextStyle(
-              color: Colors.black, fontFamily: "Montserrat", fontSize: 18)),
-    );
+      child: text('Get Started',color: Colors.black,fontSize: 18));
+    
   }
 
   Container buildBottomCardIcon(BuildContext context) {
