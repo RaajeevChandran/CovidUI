@@ -18,7 +18,7 @@ class _StatsState extends State<Stats> {
     var response = await http.get(
         Uri.encodeFull(
             "https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true"), //https://corona-virus-stats.herokuapp.com/api/v1/cases/countries-search
-        
+
         headers: {"Accept": "application/json"});
 
     data = json.decode(response.body);

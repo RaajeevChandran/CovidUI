@@ -1,10 +1,10 @@
 import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
-import 'stats.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+
+import 'helpers/widgets.dart';
 
 class Task {
   String task;
@@ -21,8 +21,8 @@ class Res extends StatefulWidget {
 class _ResState extends State<Res> {
   Map data = {};
   Map<String, dynamic> statsIndia;
-    List<charts.Series<Task, String>> _seriesPieData =
-        List<charts.Series<Task, String>>();
+  List<charts.Series<Task, String>> _seriesPieData =
+      List<charts.Series<Task, String>>();
   int a, b, c;
   var days = DateTime.now().day;
   var month = DateTime.now().month;
@@ -45,9 +45,7 @@ class _ResState extends State<Res> {
   Future<String> getData() async {
     var response = await http.get(
         Uri.encodeFull(
-            "https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true"), //https://corona-virus-stats.herokuapp.com/api/v1/cases/countries-search
-        //https://api.thevirustracker.com/free-api?global=stats print(data["results"][0]["total_cases"])
-        //https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true
+            "https://api.apify.com/v2/key-value-stores/toDWvRj1JpTXiM8FF/records/LATEST?disableRedirect=true"),
         headers: {"Accept": "application/json"});
 
     data = json.decode(response.body);
@@ -80,12 +78,7 @@ class _ResState extends State<Res> {
     print("Length is ${_seriesPieData.length}");
   }
 
-  check() {
-    if (_seriesPieData.length > 0) {
-      return true;
-    }
-    return false;
-  }
+
 
   @override
   void initState() {
@@ -185,54 +178,9 @@ class _ResState extends State<Res> {
             )));
   }
 
-  Widget preventionscard(Color colors, String path, String msg) {
-    return Container(
-        width: 350,
-        height: 160,
-        decoration: BoxDecoration(
-          border: Border.all(width: 3.00, color: Colors.white),
-          borderRadius: BorderRadius.all(Radius.circular(20.0)),
-          color: colors,
-        ),
-        child: Row(
-          children: <Widget>[
-            Image.asset(path),
-            Container(
-              width: 190,
-              child: Column(
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: Text(msg,
-                        style: TextStyle(fontFamily: "Jost", fontSize: 15)),
-                  )
-                ],
-              ),
-            )
-          ],
-        ));
-  }
+  
 
-  Container symptomcard(Color colors, String imgpath, String symptom) {
-    return Container(
-        margin: EdgeInsets.all(10.0),
-        height: 150,
-        width: 130,
-        decoration: BoxDecoration(
-            border: Border.all(width: 1.00, color: Colors.white),
-            borderRadius: BorderRadius.all(Radius.circular(20.0)),
-            color: colors,
-            image: DecorationImage(image: AssetImage(imgpath))),
-        child: Column(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 138.0),
-            ),
-            Text(symptom,
-                style: TextStyle(fontFamily: "Jost", color: Color(0xFF272566))),
-          ],
-        ));
-  }
+  
 
   Container firstcontainer() {
     return Container(
@@ -245,15 +193,7 @@ class _ResState extends State<Res> {
         ),
         child: Column(
           children: <Widget>[
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: <Widget>[
-                IconButton(
-                    icon: Icon(Icons.menu),
-                    onPressed: null,
-                    color: Colors.black)
-              ],
-            ),
+            
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
